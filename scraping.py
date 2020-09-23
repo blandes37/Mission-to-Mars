@@ -91,7 +91,7 @@ def featured_image(browser):
 def mars_facts():
     
     try:
-    df = pd.read_html('http://space-facts.com/mars/')[0]
+        df = pd.read_html('http://space-facts.com/mars/')[0]
     except BaseException:
         return None
 
