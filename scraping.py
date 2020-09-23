@@ -3,12 +3,31 @@
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
 import pandas as pd
+import datetime as dt
 
+def scrape_all():
+    # start headless driver
+    browser = Browser("chrome", executable_path="chromedriver", headless=True)
 
+    news_title, news_paragraph = mars_news(browser)
+
+    #Store results in dict
+    data = {
+        "news_title": news_title,
+        "news_paragraph": news_paragraph,
+        "featured_image": featured_image(browser),
+        "facts": mars_facts(),
+        "last_modified": dt.datetime.now()
+    }
+    #Stop
+    browser.quit()
+    return data
 
 # set executable path and initialize the chrome browser in splinter
-executable_path = {'executable_path': 'chromedriver'}
-browser = Browser('chrome', **executable_path)
+#(I guess this gets removed? Dunno why???) executable_path = {'executable_path': 'chromedriver'}
+# Looks like we don't need this either? browser = Browser('chrome', **executable_path)
+## Boy I sure wish I knew what the fuck was going on and why I paid so much for this horrible "class"
+
 
 # define Mars News function
 def mars_news(browser):
@@ -79,9 +98,12 @@ def mars_facts():
     df.columns=['description', 'value']
     df.set_index('description', inplace=True)
     
-    return df.to_html()
+    return df.to_html(classes="table table-striped")
 
-    browser.quit()
+if __name__ == "__main__":
+
+    #If running as script, print scraped data
+    print(scrape_all())   
 
 
 
