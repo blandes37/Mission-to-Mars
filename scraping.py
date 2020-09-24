@@ -26,7 +26,7 @@ def scrape_all():
 # set executable path and initialize the chrome browser in splinter
 #(I guess this gets removed? Dunno why???) executable_path = {'executable_path': 'chromedriver'}
 # Looks like we don't need this either? browser = Browser('chrome', **executable_path)
-## Boy I sure wish I knew what the fuck was going on and why I paid so much for this horrible "class"
+## Boy I sure wish I knew what was going on and why I paid so much for this horrible "class"
 
 
 # define Mars News function
